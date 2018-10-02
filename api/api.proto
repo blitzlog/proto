@@ -1,0 +1,122 @@
+syntax = "proto3";
+option go_package = "github.com/blitzlog/proto/api";
+import "log.proto";
+import "common.proto";
+import "timeseries.proto";
+
+package api;
+
+message createTokenRequest {
+	string				externalToken	= 1;
+	string				provider	= 2;
+}
+
+message createTokenResponse {
+	string				token		= 1;
+	user				user		= 2;
+	repeated account		accounts	= 3;
+}
+
+message createAccountRequest {
+	string				type		= 1;
+	string				name		= 2;
+}
+
+message createAccountResponse {
+	account				account		= 1;
+}
+
+message getAccountsResponse {
+	repeated account		accounts	= 1;
+}
+
+message getAccountResponse {
+	account				account		= 1;
+}
+
+message createOrgRequest {}
+
+message createOrgResponse {}
+
+message addUserRequest {
+	string				email		= 1;
+	repeated string			roles		= 2;
+}
+
+message addUserResponse {
+}
+
+message createKeyRequest {
+}
+
+message createKeyResponse {
+	key				key		= 1;
+}
+
+message getKeysResponse {
+	repeated key			keys		= 1;
+}
+
+message getLogsRequest {
+	common.logQuery			query		= 1;
+}
+
+message getLogsResponse {
+	repeated log.log		logs		= 1;
+}
+
+message getLogStatsRequest {
+	common.logQuery			query		= 1;
+}
+
+message getLogStatsResponse {
+	common.logStats			stats		= 1;
+}
+
+message getLogMetricsRequest {
+	common.logQuery			query		= 1;
+}
+
+message getLogMetricsResponse {
+	common.timeseries		timeseries	= 1;
+}
+
+message getUsageResponse {
+	repeated usage			usages		= 1;
+}
+
+message getUsersResponse {
+	repeated user			users		= 1;
+}
+
+message updateInstancesRequest {
+	repeated string			instances	= 1;
+	string				logLevel	= 2;
+	int32				logVerbosity	= 3;
+}
+
+message user {
+	string				id		= 1;
+	string				email		= 2;
+	repeated string			roles		= 3;
+}
+
+message account {
+	string				id		= 1;
+	string				type		= 2;
+	string				name		= 3;
+	repeated string			roles		= 4;
+}
+
+message usage {
+	int64				startMs		= 1;
+	int64				endMs		= 2;
+	int64				limit		= 3;
+	int64				usage		= 4;
+}
+
+message key {
+	string			id		= 1;
+	string			accountId	= 2;
+	map<string, string>	tags		= 3;
+}

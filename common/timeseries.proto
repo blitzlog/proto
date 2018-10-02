@@ -1,0 +1,28 @@
+syntax = "proto3";
+option go_package = "github.com/blitzlog/proto/common";
+
+package common;
+
+message timeseries {
+	map<int64, tsMetric>	timestamps	= 1;
+}
+
+message tsMetric {
+	map<string, float>	metrics		= 1;
+}
+
+/*
+message timeseries {
+	repeated timestamp	timestamps	= 1;
+}
+
+message timestamp {
+	int64			timestamp	= 1;
+	repeated tsMetric	metrics		= 2;
+}
+
+message tsMetric {
+	string			metric		= 1;
+	float			value		= 2;
+}
+*/

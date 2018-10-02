@@ -1,0 +1,44 @@
+syntax = "proto3";
+option go_package = "github.com/blitzlog/proto/edge";
+import "log.proto";
+
+package edge;
+
+service edge {
+
+	// authenticate client
+	rpc authenticate	(authRequest) 			returns (authResponse) {}
+
+	// post logs from client to edge server.
+	rpc postLogs		(stream postLogsRequest)	returns (stream postLogsResponse) {}
+}
+
+message postLogsRequest {
+	string		tokenId			= 1;
+	log.logs	logs			= 2;
+	metrics		metrics			= 3;
+}
+
+message metrics {
+	int32		latency			= 1;
+	int32		errCount		= 2;
+	int32		logChannelSize		= 3;
+	int32		edgeChannelSize 	= 4;
+	int32		localChannelSize 	= 5;
+}
+
+message postLogsResponse {
+	int32		code			= 1;
+	log.level	logLevel		= 2;
+	int32		logVerbosity		= 3;
+}
+
+message authRequest {
+	string		version			= 1;
+	string		keyId			= 2;
+}
+
+message authResponse {
+	int32		code			= 1;
+	string 		tokenId			= 2;
+}

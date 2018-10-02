@@ -1,0 +1,56 @@
+syntax = "proto3";
+option go_package = "github.com/blitzlog/proto/log";
+
+package log;
+
+message log {
+	string 			id 		= 1;
+	string 			file 		= 2;
+	int32 			line 		= 3;
+	string 			function 	= 4;
+	int64			timestamp	= 5;
+	level			level		= 6;
+	int32			verbosity	= 7;
+	string			msg		= 8;
+	map<string, string> 	tags		= 9;
+	string			instance	= 10;
+	string			raw		= 11;
+	int32			seq		= 12;
+}
+
+enum level {
+	none	= 0;
+	debug   = 1;
+	info 	= 2;
+	warn	= 3;
+	error	= 4;
+	fatal	= 5;
+}
+
+message logVal {
+	int32			index		= 1;
+	int64			timestamp	= 2;
+	map<string, string>	lineTags	= 3;
+}
+
+message logKey {
+	string			file		= 1;
+	int32 			line 		= 2;
+	string 			function 	= 3;
+	level			level		= 4;
+	int32			verbosity	= 5;
+	string			msg		= 6;
+}
+
+message logRaw {
+	int64			timestamp	= 1;
+	string			raw		= 2;
+}
+
+message logs {
+	int64			timestamp	= 1;
+	map<string, string>	instTags	= 2;
+	repeated logVal		vals		= 3;
+	repeated logKey		keys		= 4;
+	repeated logRaw		raws		= 5;
+}

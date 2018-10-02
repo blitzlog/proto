@@ -1,0 +1,36 @@
+syntax = "proto3";
+option go_package = "github.com/blitzlog/proto/common";
+
+package common;
+
+message logQuery {
+	string			filter		= 1;
+	queryDuration		duration	= 2;
+	queryResolution		resolution	= 3;
+	queryPage		page		= 4;
+}
+
+message queryPage {
+	string			type		= 1;
+	int64			timestamp	= 2;
+	string			id		= 3;
+	int32			size		= 4;
+}
+
+message queryDuration {
+	int64			startMs		= 1;
+	int64			endMs		= 2;
+}
+
+message queryResolution {
+}
+
+message logStats {
+	int32			total		= 1;
+	int32			instances	= 2;
+	int32			debug		= 3;
+	int32			info		= 4;
+	int32			warning		= 5;
+	int32			error		= 6;
+	int32			fatal		= 7;
+}
