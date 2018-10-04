@@ -99,6 +99,7 @@ message user {
 	string				id		= 1;
 	string				email		= 2;
 	repeated string			roles		= 3;
+	bool				disabled	= 4;
 }
 
 message account {
