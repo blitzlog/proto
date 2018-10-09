@@ -47,9 +47,18 @@ message addUserResponse {
 }
 
 message createKeyRequest {
+	map<string, string>		tags		= 1;
 }
 
 message createKeyResponse {
+	key				key		= 1;
+}
+
+message updateKeyRequest {
+	map<string, string>		tags		= 1;
+}
+
+message updateKeyResponse {
 	key				key		= 1;
 }
 
@@ -117,7 +126,7 @@ message usage {
 }
 
 message key {
-	string			id		= 1;
-	string			accountId	= 2;
-	map<string, string>	tags		= 3;
+	string				id		= 1;
+	string				accountId	= 2;
+	map<string, string>		tags		= 3;
 }
