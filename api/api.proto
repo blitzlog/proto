@@ -34,16 +34,9 @@ message getAccountResponse {
 	account				account		= 1;
 }
 
-message createOrgRequest {}
-
-message createOrgResponse {}
-
 message addUserRequest {
 	string				email		= 1;
 	repeated string			roles		= 2;
-}
-
-message addUserResponse {
 }
 
 message createKeyRequest {
