@@ -22,9 +22,7 @@ message postLogsRequest {
 message metrics {
 	int32		latency			= 1;
 	int32		errCount		= 2;
-	int32		logChannelSize		= 3;
-	int32		edgeChannelSize 	= 4;
-	int32		localChannelSize 	= 5;
+	int32		edgeChannelSize 	= 3;
 }
 
 message postLogsResponse {
